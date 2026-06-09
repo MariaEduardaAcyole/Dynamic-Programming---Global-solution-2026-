@@ -253,7 +253,6 @@ Quando `app.py` esta rodando, os principais endpoints sao:
 - `GET /api/socrates?order=MINRANGE&max=50`: consulta registros publicos do SOCRATES.
 
 ## Como a analise funciona
-## Como a Análise Funciona
 
 1. O sistema realiza o download dos elementos orbitais públicos do CelesTrak ou utiliza os dados armazenados em cache local.
 2. Cada linha do arquivo CSV é convertida em um objeto satélite contendo informações orbitais como NORAD ID, inclinação, excentricidade, período orbital, apogeu e perigeu.
