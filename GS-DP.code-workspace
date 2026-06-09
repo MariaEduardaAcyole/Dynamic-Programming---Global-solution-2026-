@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../GS-Dynamic/__pycache__"
+		},
+		{
+			"path": "../GS-Dynamic/data"
+		},
+		{
+			"path": "../GS-Dynamic/front_faculdade"
+		},
+		{
+			"path": "../GS-Dynamic/static"
+		}
+	],
+	"settings": {}
+}

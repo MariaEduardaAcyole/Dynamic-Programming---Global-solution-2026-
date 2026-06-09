@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orbital Guardian Simples</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p>Projeto Faculdade</p>
+        <h1>Orbital Guardian Simples</h1>
+        <span>Sistema de alerta de aproximação entre satélites com dados públicos do CelesTrak.</span>
+      </header>
+
+      <section class="controles">
+        <label>
+          Grupo
+          <select id="grupo">
+            <option value="stations">Estações espaciais</option>
+            <option value="starlink" selected>Starlink</option>
+            <option value="gps-ops">GPS operacional</option>
+            <option value="iridium-NEXT">Iridium NEXT</option>
+            <option value="active">Satélites ativos</option>
+          </select>
+        </label>
+
+        <label>
+          Quantidade
+          <input id="limite" type="number" value="80" min="10" max="300" />
+        </label>
+
+        <label>
+          Horas
+          <input id="horas" type="number" value="3" min="1" max="24" />
+        </label>
+
+        <label>
+          Passo min.
+          <input id="passo" type="number" value="20" min="5" max="60" />
+        </label>
+
+        <label>
+          Alerta até km
+          <input id="limiteKm" type="number" value="20" min="1" max="200" />
+        </label>
+
+        <button id="botao">Analisar</button>
+      </section>
+
+      <section class="cards">
+        <article>
+          <span>Lista de satélites</span>
+          <strong id="totalLista">-</strong>
+        </article>
+        <article>
+          <span>Dicionário NORAD</span>
+          <strong id="totalDict">-</strong>
+        </article>
+        <article>
+          <span>Alertas</span>
+          <strong id="totalAlertas">-</strong>
+        </article>
+      </section>
+
+      <section class="explicacao">
+        <h2>Estruturas de dados usadas</h2>
+        <ul>
+          <li><b>Lista:</b> guarda todos os satélites carregados do CSV.</li>
+          <li><b>Dicionário:</b> permite buscar satélites rapidamente pelo NORAD ID.</li>
+          <li><b>Tupla:</b> representa a posição 3D no formato <code>(x, y, z)</code>.</li>
+          <li><b>Matriz:</b> guarda as posições calculadas em cada horário da simulação.</li>
+          <li><b>Fila de prioridade:</b> ordena alertas pela menor distância.</li>
+        </ul>
+      </section>
+
+      <section class="duas-colunas">
+        <div>
+          <h2>Alertas de aproximação</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Risco</th>
+                <th>Satélite A</th>
+                <th>Satélite B</th>
+                <th>Distância</th>
+                <th>Horário</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaAlertas">
+              <tr><td colspan="5">Clique em analisar.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <h2>Satélites carregados</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>NORAD</th>
+                <th>Nome</th>
+                <th>Perigeu</th>
+                <th>Apogeu</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaSatelites">
+              <tr><td colspan="4">Aguardando dados.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orbital Guardian</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Rastreamento orbital e alerta de conjunções</p>
+          <h1>Orbital Guardian</h1>
+          <p class="subtitle">
+            Analise satélites públicos do CelesTrak, encontre aproximações orbitais e compare com alertas reais do SOCRATES.
+          </p>
+        </div>
+        <div class="status-panel">
+          <span class="status-dot"></span>
+          <span id="sourceStatus">Fontes públicas sem chave</span>
+        </div>
+      </section>
+
+      <section class="control-band">
+        <label>
+          Grupo orbital
+          <select id="groupSelect"></select>
+        </label>
+        <label>
+          Satélites
+          <input id="limitInput" type="number" min="20" max="600" value="180" />
+        </label>
+        <label>
+          Horizonte
+          <select id="hoursSelect">
+            <option value="6">6 h</option>
+            <option value="12" selected>12 h</option>
+            <option value="24">24 h</option>
+            <option value="48">48 h</option>
+          </select>
+        </label>
+        <label>
+          Passo
+          <select id="stepSelect">
+            <option value="5">5 min</option>
+            <option value="10" selected>10 min</option>
+            <option value="15">15 min</option>
+            <option value="30">30 min</option>
+          </select>
+        </label>
+        <label>
+          Alerta até
+          <select id="thresholdSelect">
+            <option value="5">5 km</option>
+            <option value="10">10 km</option>
+            <option value="20" selected>20 km</option>
+            <option value="50">50 km</option>
+            <option value="100">100 km</option>
+          </select>
+        </label>
+        <button id="scanButton">Analisar colisões</button>
+      </section>
+
+      <section class="metrics">
+        <article>
+          <span>Satélites analisados</span>
+          <strong id="satCount">-</strong>
+        </article>
+        <article>
+          <span>Alertas locais</span>
+          <strong id="alertCount">-</strong>
+        </article>
+        <article>
+          <span>Menor distância</span>
+          <strong id="minDistance">-</strong>
+        </article>
+        <article>
+          <span>SOCRATES</span>
+          <strong id="socratesCount">-</strong>
+        </article>
+      </section>
+
+      <section class="grid">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Alertas gerados pelo app</h2>
+              <p>Triagem educacional com elementos orbitais públicos.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Risco</th>
+                  <th>Satélite A</th>
+                  <th>Satélite B</th>
+                  <th>Distância</th>
+                  <th>TCA UTC</th>
+                </tr>
+              </thead>
+              <tbody id="alertsBody">
+                <tr><td colspan="5">Execute uma análise para gerar alertas.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>SOCRATES público</h2>
+              <p>Conjunções publicadas pelo CelesTrak para os próximos dias.</p>
+            </div>
+            <button id="socratesButton" class="secondary">Atualizar</button>
+          </div>
+          <div class="socrates-meta" id="socratesMeta">Aguardando consulta.</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Risco</th>
+                  <th>Objeto A</th>
+                  <th>Objeto B</th>
+                  <th>Distância</th>
+                  <th>Prob.</th>
+                </tr>
+              </thead>
+              <tbody id="socratesBody">
+                <tr><td colspan="5">Clique em atualizar para consultar.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <h2>Mapa orbital 3D</h2>
+            <p>Arraste para girar, use a roda do mouse para aproximar e passe o cursor sobre um satélite.</p>
+          </div>
+          <button id="loadSatellitesButton" class="secondary">Carregar mapa</button>
+        </div>
+        <div class="canvas-frame">
+          <canvas id="orbitCanvas" width="1200" height="640"></canvas>
+          <div id="satTooltip" class="sat-tooltip"></div>
+        </div>
+      </section>
+
+      <section class="notes">
+        <strong>Observação técnica:</strong>
+        este app usa dados públicos e uma propagação aproximada para fins acadêmicos. Módulos acoplados da mesma estação espacial são ignorados na triagem local para evitar falsos alertas de 0 km. Operações reais de prevenção de colisão exigem SGP4 validado, covariância, telemetria do operador e análise oficial de conjunção.
+      </section>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
