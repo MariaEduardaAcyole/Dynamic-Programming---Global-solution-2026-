@@ -308,5 +308,3 @@ O projeto Orbital Guardian contribui para diversos Objetivos de Desenvolvimento 
 - ***562680*** - Mayke Costa Santos
 
 Projeto desenvolvido para fins academicos.
-#   D y n a m i c - P r o g r a m m i n g - - - G l o b a l - s o l u t i o n - 2 0 2 6 -  
- 
